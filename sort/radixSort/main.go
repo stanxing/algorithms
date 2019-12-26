@@ -37,9 +37,11 @@ func RadixSort(array []string) []string {
 
 		for j := len(array) - 1; j >= 0; j-- {
 			asciiIndex := getAscii(array[j], i)
+			fmt.Println(asciiIndex)
 			sortedArray[countArray[asciiIndex]-1] = array[j]
 			countArray[asciiIndex]--
 		}
+		fmt.Println(sortedArray)
 		copy(array, sortedArray)
 	}
 	return array
@@ -56,7 +58,7 @@ func getMaxLength(array []string) int {
 }
 
 func getAscii(str string, position int) int {
-	// 注意这里，如果 str 上对应的位置不存在字符，应该为其补上 0（ascii 码 48）
+	// 注意这里，如果 str 上对应的位置不存在字符，应该为其补上 0（ascii 码 48），末尾补 0，不是开头补 0
 	if len(str)-1 < position {
 		return 48 // 0 的 ascii 码
 	}
@@ -66,4 +68,5 @@ func getAscii(str string, position int) int {
 func main() {
 	fmt.Println(RadixSort([]string{"qw", "abc", "qwe", "hhh", "a", "cws", "ope"}))
 	fmt.Println(RadixSort([]string{"qwew", "abc", "qwe", "hhh", "a", "cws", "ope"}))
+	fmt.Println(RadixSort([]string{"xe", "eee"}))
 }
