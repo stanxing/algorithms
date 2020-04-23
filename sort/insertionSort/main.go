@@ -17,6 +17,7 @@ func InsertionSort(array []int) []int {
 		// 如果元素小于，将已排序部分的元素向后移一个位置，腾出来一个插入的空
 		for ; j >= 0; j-- {
 			if tmp < array[j] {
+				// 注意，这里 j+1 可能覆盖掉 i 的位置，所以要把 i 的值先保存下来
 				array[j+1] = array[j]
 			} else {
 				break

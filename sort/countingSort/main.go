@@ -12,7 +12,7 @@ import "fmt"
 
 // 时间空间复杂度：
 // 遍历原始数组为 N，遍历计数数组为 M，总共用时 3N+M，即 O(N)
-// 空间复杂度为 O(M+N) 计数数组和结果数组
+// 空间复杂度为 O(M+N)，因为需要一个计数数组和一个结果数组
 
 // 该实现下的计数排序是不稳定算法，因为是统计元素下标的思路，无法去判断相同元素之间的顺序
 func CountingSort(array []int) []int {
@@ -44,13 +44,13 @@ func CountingSort(array []int) []int {
 func StableCountingSort(array []int) []int {
 	min := getMin(array)
 	max := getMax(array)
-	interval := max - min
+	interval := max - min + 1
 	// 创建计数数组
-	countArray := make([]int, interval+1)
+	countArray := make([]int, interval)
 	for _, e := range array {
 		countArray[e-min]++
 	}
-	// 对统计数组变形，后面的元素等于前面的元素之和\
+	// 对统计数组变形，后面的元素等于前面的元素之和
 	// 这一步做完以后，计数数组中存的值即为下标所对应的值的最后一个元素（如果有相同的元素）对应的位置
 	sum := 0
 	for i, e := range countArray {
